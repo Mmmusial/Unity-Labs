@@ -25,6 +25,8 @@ public class ViewSight : MonoBehaviour
         {
             mover.routeCounter++;
             other.gameObject.SetActive(false);
+            StaticValues.Frytki++;
+
         }
         
        
