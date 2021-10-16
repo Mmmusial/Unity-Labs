@@ -9,7 +9,7 @@ public static class SaveSystem
     public static void SaveWitcher (Witcher witcher)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = "C:/Users/student/Downloads/Projekt-PGU/witcher.fun";
+        string path = Application.dataPath + "/../WorldSaves/witcher.fun";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         WitcherData data = new WitcherData(witcher);
@@ -20,7 +20,7 @@ public static class SaveSystem
 
     public static WitcherData LoadWitcher()
     {
-        string path = "C:/Users/student/Downloads/Projekt-PGU/witcher.fun";
+        string path = Application.dataPath + "/../WorldSaves/witcher.fun";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -40,7 +40,7 @@ public static class SaveSystem
     public static void SaveZiemniak(Ziemniak ziemniak)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = "C:/Users/student/Downloads/Projekt-PGU/ziemniak.fun";
+        string path = Application.dataPath + "/../WorldSaves/ziemniak.fun";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         ZiemniakData data = new ZiemniakData(ziemniak);
@@ -51,7 +51,7 @@ public static class SaveSystem
 
     public static ZiemniakData LoadZiemniak()
     {
-        string path = "C:/Users/student/Downloads/Projekt-PGU/ziemniak.fun";
+        string path = Application.dataPath + "/../WorldSaves/ziemniak.fun";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -73,7 +73,7 @@ public static class SaveSystem
     public static void SavePaluch(Paluch paluch)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = "C:/Users/student/Downloads/Projekt-PGU/paluch.fun";
+        string path = Application.dataPath + "/../WorldSaves/paluch.fun";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         PaluchData data = new PaluchData(paluch);
@@ -84,7 +84,7 @@ public static class SaveSystem
 
     public static PaluchData LoadPaluch()
     {
-        string path = "C:/Users/student/Downloads/Projekt-PGU/paluch.fun";
+        string path = Application.dataPath + "/../WorldSaves/paluch.fun";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -106,7 +106,7 @@ public static class SaveSystem
         public static void SaveElf(Elf elf)
         {
             BinaryFormatter formatter = new BinaryFormatter();
-            string path = "C:/Users/student/Downloads/Projekt-PGU/elf.fun";
+        string path = Application.dataPath + "/../WorldSaves/elf.fun";
             FileStream stream = new FileStream(path, FileMode.Create);
 
             ElfData data = new ElfData(elf);
@@ -117,7 +117,7 @@ public static class SaveSystem
 
         public static ElfData LoadElf()
         {
-            string path = "C:/Users/student/Downloads/Projekt-PGU/elf.fun";
+        string path = Application.dataPath + "/../WorldSaves/elf.fun";
             if (File.Exists(path))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
@@ -139,7 +139,7 @@ public static class SaveSystem
     public static void SaveHobbit(Hobbit hobbit)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = "C:/Users/student/Downloads/Projekt-PGU/hobbit.fun";
+        string path = Application.dataPath + "/../WorldSaves/hobbit.fun";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         HobbitData data = new HobbitData(hobbit);
@@ -150,12 +150,44 @@ public static class SaveSystem
 
     public static HobbitData LoadHobbit()
     {
-        string path = "C:/Users/student/Downloads/Projekt-PGU/hobbit.fun";
+        string path = Application.dataPath + "/../WorldSaves/hobbit.fun";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
             HobbitData data = formatter.Deserialize(stream) as HobbitData;
+            stream.Close();
+
+            return data;
+
+        }
+        else
+        {
+            Debug.LogError("Save file not found in " + path);
+            return null;
+        }
+    }
+
+    public static void SaveWinnaBaba(WinnaBaba winnaBaba)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.dataPath + "/../WorldSaves/winnababa.fun";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        WinnaBabaData data = new WinnaBabaData(winnaBaba);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    public static WinnaBabaData LoadWinnaBaba()
+    {
+        string path = Application.dataPath + "/../WorldSaves/winnababa.fun";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+            WinnaBabaData data = formatter.Deserialize(stream) as WinnaBabaData;
             stream.Close();
 
             return data;

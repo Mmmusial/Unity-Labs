@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Ziemniak : MonoBehaviour
 {
+    public int attack = 15;
     public int health = 50;
     public int armor = 100;
+    public float overallCooldown = 5.0f;
 
     public void SaveZiemniak()
     {
@@ -27,6 +29,16 @@ public class Ziemniak : MonoBehaviour
     public void ChangeArmor(int amount)
     {
         armor += amount;
+    }
+
+    public int BlobAttack()
+    {
+        return (int)(this.attack * 1.1);
+    }
+
+    public int SplitAttack()
+    {
+        return (int)(this.attack * 0.7);
     }
 
     #endregion
