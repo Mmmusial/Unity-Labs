@@ -931,7 +931,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 69
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1568,7 +1568,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 420
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1680,6 +1680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8bf6e1d7d1cf9341a4581165ca49219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 0
 --- !u!1 &956451388
 GameObject:
   m_ObjectHideFlags: 0
@@ -3080,7 +3081,10 @@ MonoBehaviour:
   rigbod: {fileID: 1579924999}
   mover: {fileID: 1579924998}
   camera: {fileID: 2068575845}
-  enemy: {fileID: 0}
+  ziemniakEnemy: {fileID: 0}
+  paluchEnemy: {fileID: 0}
+  winnaBabaEnemy: {fileID: 0}
+  elfProgrammer: {fileID: 0}
   cameraVecBeforeFight: {x: 0, y: 0, z: 0}
   cameraEulBeforeFight: {x: 0, y: 0, z: 0}
   witcherVecBeforeFight: {x: 0, y: 0, z: 0}
@@ -3088,6 +3092,10 @@ MonoBehaviour:
   fightUI: {fileID: 30493466}
   witcherReceivingDamage: {fileID: 551699755}
   enemyReceivingDamage: {fileID: 951745332}
+  actualdialogue: 
+  elfChatIndex: 0
+  witcherChatIndex: 0
+  witcherTalking: 0
 --- !u!135 &1579924996
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4617,8 +4625,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e80b3f5f0cc644e889c2d18d36ac80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 10
-  health: 50
+  attack: 20
+  health: 100
   armor: 100
   gold: 1000
   silver: 450
@@ -4889,6 +4897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   armor: 100
+  gold: 500
 --- !u!1 &1077019257276106
 GameObject:
   m_ObjectHideFlags: 0
@@ -5093,7 +5102,7 @@ GameObject:
   - component: {fileID: 137472929667225833}
   m_Layer: 8
   m_Name: Body_Mesh
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6955,7 +6964,7 @@ GameObject:
   - component: {fileID: 1186576818}
   - component: {fileID: 1742384780232317}
   m_Layer: 8
-  m_Name: Tomcio
+  m_Name: Paluch
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6973,8 +6982,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b55288c9c0fabe48b54f7bf5eb24175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attack: 17
   health: 50
   armor: 100
+  overallCooldown: 6
 --- !u!1 &1747530570603899
 GameObject:
   m_ObjectHideFlags: 0
@@ -7927,7 +7938,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000013440199545}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 497.45, y: 16.690002, z: 580.4}
+  m_LocalPosition: {x: 494.2, y: 16.690002, z: 606.2}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4000012146646325}
@@ -8339,8 +8350,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742384780232316}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 450.87, y: 30.17, z: 495}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 518.7, y: 21.3, z: 574.4}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4233641307026736}
@@ -8348,7 +8359,7 @@ Transform:
   - {fileID: 4029824710092480}
   m_Father: {fileID: 0}
   m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4066466338044999
 Transform:
   m_ObjectHideFlags: 0
@@ -8417,7 +8428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067053363543057}
   m_LocalRotation: {x: 0, y: 0.5, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 433.36, y: 22.79, z: 513.95}
+  m_LocalPosition: {x: 485.1, y: 15.1, z: 610.8}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 4454074968515029}
@@ -10390,7 +10401,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1258170264092242}
   m_LocalRotation: {x: -0.7071069, y: 0, z: -0, w: 0.70710677}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.83, y: 0, z: 1.08}
   m_LocalScale: {x: 60.000004, y: 60.000004, z: 60.000004}
   m_Children: []
   m_Father: {fileID: 4029824710092480}
@@ -15095,8 +15106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 894292c4ad071c248b3c406925ba834a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attack: 15
   health: 50
-  armor: 100
+  armor: 30
+  overallCooldown: 5
 --- !u!65 &7967683397041283037
 BoxCollider:
   m_ObjectHideFlags: 0

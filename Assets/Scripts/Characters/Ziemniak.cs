@@ -5,8 +5,8 @@ using UnityEngine;
 public class Ziemniak : MonoBehaviour
 {
     public int attack = 15;
-    public int health = 50;
-    public int armor = 100;
+    public int health = 100;
+    public int armor = 1;
     public float overallCooldown = 5.0f;
 
     public void SaveZiemniak()

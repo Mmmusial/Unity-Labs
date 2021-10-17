@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Paluch : MonoBehaviour
 {
+    public int attack = 30;
     public int health = 50;
-    public int armor = 100;
+    public int armor = 50;
+    public float overallCooldown = 6.0f;
 
     public void SavePaluch()
     {
@@ -29,6 +31,15 @@ public class Paluch : MonoBehaviour
         armor += amount;
     }
 
+    public int SwordAttack()
+    {
+        return (int)(this.attack * 1.3);
+    }
+
+    public int QuickStabAttack()
+    {
+        return (int)(this.attack * 0.9);
+    }
     #endregion
 
 }

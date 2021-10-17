@@ -3034,8 +3034,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 894292c4ad071c248b3c406925ba834a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
-  armor: 100
+  attack: 20
+  health: 60
+  armor: 30
+  overallCooldown: 5
 --- !u!1 &2807834717238290603
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class WinnaBaba : MonoBehaviour
 {
-    public int health = 50;
-    public int armor = 100;
+    public int attack = 20;
+    public int health = 60;
+    public int armor = 30;
+    public float overallCooldown = 5.0f;
 
     public void SaveWinnaBaba()
     {
@@ -27,6 +29,16 @@ public class WinnaBaba : MonoBehaviour
     public void ChangeArmor(int amount)
     {
         armor += amount;
+    }
+
+    public int HandAttack()
+    {
+        return (int)(this.attack * 0.5);
+    }
+
+    public int HighkickAttack()
+    {
+        return (int)(this.attack * 1.2);
     }
 
     #endregion

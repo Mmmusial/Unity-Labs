@@ -6,6 +6,7 @@ public class Elf : MonoBehaviour
 {
     public int health = 50;
     public int armor = 100;
+    public int gold = 500;
 
     public void SaveElf()
     {
@@ -16,6 +17,7 @@ public class Elf : MonoBehaviour
         ElfData data = SaveSystem.LoadElf();
         health = data.health;
         armor = data.armor;
+        gold = data.gold;
         transform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
     }
     #region UI Methods
@@ -27,6 +29,11 @@ public class Elf : MonoBehaviour
     public void ChangeArmor(int amount)
     {
         armor += amount;
+    }
+
+    public void ChangeGold(int amount)
+    {
+        gold += amount;
     }
 
     #endregion
