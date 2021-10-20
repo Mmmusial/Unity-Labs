@@ -430,24 +430,10 @@ public class ViewSight : MonoBehaviour
     {
 
         fightUI.gameObject.SetActive(true);
-        if (other.name == "Ziemniak"){
-            ziemniakEnemy = other.GetComponent<Collider>().gameObject.GetComponent<Ziemniak>();
-        }
-
-        if (other.name == "Paluch")
-        {
-            paluchEnemy = other.GetComponent<Collider>().gameObject.GetComponent<Paluch>();
-        }
-
-        if (other.name == "WinnaBaba")
-        {
-            winnaBabaEnemy = other.GetComponent<Collider>().gameObject.GetComponent<WinnaBaba>();
-        }
-
-        if (other.name == "Elf")
-        {
-            elfProgrammer = other.GetComponent<Collider>().gameObject.GetComponent<Elf>();
-        }
+        ziemniakEnemy = other.GetComponent<Ziemniak>();
+        paluchEnemy = other.GetComponent<Paluch>();
+        winnaBabaEnemy = other.GetComponent<WinnaBaba>();
+        elfProgrammer = other.GetComponent<Elf>();
 
         if (other.CompareTag("Monster"))//tutaj przeniesc do sceny walki
         {

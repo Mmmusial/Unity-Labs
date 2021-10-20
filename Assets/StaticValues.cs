@@ -5,14 +5,19 @@ using System;
 
 public class StaticValues
 {
-    public static int Frytki { get =>Frytki; set { Frytki = value; updateResources(); } }
-    public static int WInoBiale=0;
-    public static int WinoCzerwone=0;
-    public static int Lapuszki=0;
-    public static int Hajs=0;
+    private static int frytki=0;
+    public static int Frytki { get => frytki; set { frytki = value; updateResources(); } }
+    private static int wInoBiale=0;
+    public static int WInoBiale { get => wInoBiale; set { wInoBiale = value; updateResources(); } }
+    private static int winoCzerwone = 0;
+    public static int WinoCzerwone { get => winoCzerwone; set { winoCzerwone = value; updateResources(); } }
+    private static int lapuszki = 0;
+    public static int Lapuszki { get => lapuszki; set { lapuszki = value; updateResources(); } }
+    private static int hajs = 0;
+    public static int Hajs { get => hajs; set { hajs = value; updateResources(); } }
 
     public static event Action updateEvent;
-    public static void updateResources()
+    private static void updateResources()
     {
         updateEvent?.Invoke();
     }
