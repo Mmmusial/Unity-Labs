@@ -38,4 +38,6 @@ public class StaticResourcesCounter : MonoBehaviour
         StaticValues.updateEvent -= updateResources;
     }
 
+
+
 }
