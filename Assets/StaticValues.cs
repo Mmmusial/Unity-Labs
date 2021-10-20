@@ -5,6 +5,18 @@ using System;
 
 public class StaticValues
 {
+
+    static StaticValues()
+    {
+        frytki = 10;
+        wInoBiale = 10;
+        winoCzerwone = 10;
+        lapuszki = 10;
+        hajsSrebrny = 10;
+        hajsZloty = 10;
+
+    }
+
     private static int frytki=0;
     public static int Frytki { get => frytki; set { frytki = value; updateResources(); } }
     private static int wInoBiale=0;
