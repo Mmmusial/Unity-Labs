@@ -13,8 +13,10 @@ public class StaticValues
     public static int WinoCzerwone { get => winoCzerwone; set { winoCzerwone = value; updateResources(); } }
     private static int lapuszki = 0;
     public static int Lapuszki { get => lapuszki; set { lapuszki = value; updateResources(); } }
-    private static int hajs = 0;
-    public static int Hajs { get => hajs; set { hajs = value; updateResources(); } }
+    private static int hajsSrebrny = 0;
+    public static int HajsSrebrny { get => hajsSrebrny; set { hajsSrebrny = value; updateResources(); } }
+    private static int hajsZloty = 0;
+    public static int HajsZloty { get => hajsZloty; set { hajsZloty = value; updateResources(); } }
 
     public static event Action updateEvent;
     private static void updateResources()

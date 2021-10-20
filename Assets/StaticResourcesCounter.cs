@@ -10,7 +10,8 @@ public class StaticResourcesCounter : MonoBehaviour
     public Text WInoBialeText;
     public Text LapuszkiText;
     public Text FrytkiText;
-    public Text HajsText;
+    public Text HajsZlotyText;
+    public Text HajsSrebrnyText;
 
 
 
@@ -20,20 +21,21 @@ public class StaticResourcesCounter : MonoBehaviour
         WInoBialeText.text = StaticValues.WInoBiale.ToString();
         LapuszkiText.text = StaticValues.Lapuszki.ToString();
         FrytkiText.text = StaticValues.Frytki.ToString();
-        HajsText.text = StaticValues.Hajs.ToString();
-
+        HajsZlotyText.text = StaticValues.HajsZloty.ToString();
+        HajsSrebrnyText.text = StaticValues.HajsSrebrny.ToString();
     }
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         updateResources();
         StaticValues.updateEvent += updateResources;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void OnDisable()
     {
-        
+        StaticValues.updateEvent -= updateResources;
     }
+
 }
