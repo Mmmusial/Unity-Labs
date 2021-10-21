@@ -429,13 +429,14 @@ public class ViewSight : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        fightUI.gameObject.SetActive(true);
         ziemniakEnemy = other.GetComponent<Ziemniak>();
         paluchEnemy = other.GetComponent<Paluch>();
         winnaBabaEnemy = other.GetComponent<WinnaBaba>();
         elfProgrammer = other.GetComponent<Elf>();
 
-        if (other.CompareTag("Monster"))//tutaj przeniesc do sceny walki
+        IMonseterFighter monseterFighter = other.GetComponent<IMonseterFighter>();
+
+        if (monseterFighter!=null)//tutaj przeniesc do sceny walki
         {
             if (cameraVecBeforeFight[0] == 0)
             {
@@ -449,6 +450,13 @@ public class ViewSight : MonoBehaviour
             other.gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
             camera.gameObject.transform.position = new Vector3(witcher.gameObject.transform.position.x, witcher.gameObject.transform.position.y + 30, witcher.gameObject.transform.position.z - 30);
             camera.gameObject.transform.eulerAngles = new Vector3(20, 0, 0);
+
+
+            if (FightUI.Instance.gameObject.active == false)
+            {
+                FightUI.Instance.beginFight(witcher, monseterFighter);
+            }
+            
 
         }
 

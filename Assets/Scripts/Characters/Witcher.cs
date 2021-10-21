@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Witcher : MonoBehaviour
+public class Witcher : MonoBehaviour,IPlayerFighter
 {
     public int attack = 10;
     public int health = 50;
@@ -16,6 +16,38 @@ public class Witcher : MonoBehaviour
     public float guardDefenceCooldown = 3.0f;
     public float guardDefenceDuration = 1.0f;
     public bool _isGuardDefenceActive = false;
+
+    public event System.Action deathEvent;
+
+    public int internalAttackCounter = 0;
+    public PlayerAttack getNextPlayerAttack()
+    {
+        PlayerAttack punch = new PlayerAttack
+        {
+            damage = 15,
+            attackDelay = 5.0f, 
+            attackName = "Cios"
+        };
+
+        PlayerAttack kick = new PlayerAttack
+        {
+            damage = 10,
+            attackDelay = 3.0f,
+            attackName = "Kick"
+        };
+
+
+        return internalAttackCounter++ % 2 == 0 ? punch : kick;
+    }
+
+    public void recieveDamage(float damage)
+    {
+        health -= (int)damage;
+        if (health <= 0)
+        {
+            deathEvent?.Invoke();
+        }
+    }
 
 
     public void SaveWitcher()
@@ -38,6 +70,7 @@ public class Witcher : MonoBehaviour
     public void ChangeHealth(int amount)
     {
         health += amount;
+
     }
 
     public void ChangeArmor(int amount)
@@ -112,6 +145,8 @@ public class Witcher : MonoBehaviour
             return 0.0f;
         }
     }
+
+
 
     #endregion
 }

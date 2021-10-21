@@ -26,10 +26,6 @@ public class OfferUI : MonoBehaviour
 
     public int amount;
 
-    public void logDebug()
-    {
-        Debug.Log("Hallo");
-    }
     void resetState()
     {
         changeAmount(0);

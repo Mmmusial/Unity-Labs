@@ -20,6 +20,8 @@ public class Paluch : MonoBehaviour
         armor = data.armor;
         transform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
     }
+
+
     #region UI Methods
     public void ChangeHealth(int amount)
     {
