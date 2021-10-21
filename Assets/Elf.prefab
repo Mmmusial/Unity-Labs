@@ -2300,3 +2300,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   armor: 100
+  gold: 500
+  succesTreshold: 100
+  frytyMultiplier: 5
+  winoBialMultiplier: 15
+  winoCzerwMultiplier: 7
+  lapuchyMultiplier: 10
+  PatianceBase: 0.5
+  PatienceChange: 0.1
+  WellcomeRespnses:
+  - Siema
+  - Elo
+  - Haj
+  HappyRespnses:
+  - Najs
+  - "Interesuj\u0105ce"
+  - Jak dla mnie Ok
+  AngryRespnses:
+  - Ja dla mnie  to Xd
+  - Nein!!!!
+  - neneene
+  competneces: "-\u017Byje\n-Pracuje\n-Nie Na\u017Ceka"

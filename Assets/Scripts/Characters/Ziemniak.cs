@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class Ziemniak : MonoBehaviour,IMonseterFighter
 {
+
     public int attack = 15;
     public int health = 100;
     public int armor = 1;
     public float overallCooldown = 5.0f;
-
+    public int frytyDropCount = 30;
     public event Action deathEvent;
 
     public void SaveZiemniak()
@@ -72,7 +73,9 @@ public class Ziemniak : MonoBehaviour,IMonseterFighter
         health-=(int)damage;
         if (health <= 0)
         {
+            StaticValues.Frytki += frytyDropCount;
             deathEvent?.Invoke();
+            
         }
     }
 

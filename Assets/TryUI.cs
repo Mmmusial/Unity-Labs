@@ -1,18 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TryUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Image image;
+
+    private void Awake()
     {
-        
+        image =GetComponent<Image>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void setTryState(bool state)
     {
-        
+        float alpha = state ? 1 : 0;
+        image.color  =new Color(image.color.r, image.color.g, image.color.b, alpha);
     }
 }

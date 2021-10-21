@@ -26,9 +26,53 @@ public class OfferUI : MonoBehaviour
 
     public int amount;
 
-    void resetState()
+    public void resetState()
     {
         changeAmount(0);
+    }
+
+    void onStaticValuesChanged()
+    {
+        switch (tradeableType)
+        {
+            case Tradable.Lapuchy:
+                amount = Mathf.Min(amount, StaticValues.Lapuszki);
+                break;
+            case Tradable.WinoCzerw:
+                amount = Mathf.Min(amount, StaticValues.WinoCzerwone);
+                break;
+            case Tradable.WionBial:
+                amount = Mathf.Min(amount, StaticValues.WInoBiale);
+                break;
+            case Tradable.Fryty:
+                amount = Mathf.Min(amount, StaticValues.Frytki);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void sublitOffer()
+    {
+        switch (tradeableType)
+        {
+            case Tradable.Lapuchy:
+                StaticValues.Lapuszki -= amount;
+                break;
+            case Tradable.WinoCzerw:
+                StaticValues.WinoCzerwone -= amount;
+                break;
+            case Tradable.WionBial:
+                StaticValues.WInoBiale -= amount;
+                break;
+            case Tradable.Fryty:
+                StaticValues.Frytki -= amount;
+                break;
+            default:
+                break;
+        }
+
+        resetState();
     }
 
     public void onMoreButton()
@@ -80,6 +124,7 @@ public class OfferUI : MonoBehaviour
     private void Awake()
     {
 
+        //StaticValues.updateEvent += onStaticValuesChanged;
 
         foreach (var image in GetComponentsInChildren<Image>())
         {

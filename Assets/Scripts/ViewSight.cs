@@ -435,6 +435,7 @@ public class ViewSight : MonoBehaviour
         elfProgrammer = other.GetComponent<Elf>();
 
         IMonseterFighter monseterFighter = other.GetComponent<IMonseterFighter>();
+        INegotitionReciever negotitionReciever = other.GetComponent<INegotitionReciever>();
 
         if (monseterFighter!=null)//tutaj przeniesc do sceny walki
         {
@@ -452,15 +453,15 @@ public class ViewSight : MonoBehaviour
             camera.gameObject.transform.eulerAngles = new Vector3(20, 0, 0);
 
 
-            if (FightUI.Instance.gameObject.active == false)
+            if (FightUI.Instance.gameObject.activeSelf == false)
             {
                 FightUI.Instance.beginFight(witcher, monseterFighter);
             }
-            
 
+            return;
         }
 
-        if (other.CompareTag("Programmer"))//tutaj przeniesc do sceny negocjacji
+        if (negotitionReciever != null)//tutaj przeniesc do sceny negocjacji
         {
             if (cameraVecBeforeFight[0] == 0)
             {
@@ -475,6 +476,14 @@ public class ViewSight : MonoBehaviour
             camera.gameObject.transform.position = new Vector3(witcher.gameObject.transform.position.x, witcher.gameObject.transform.position.y + 30, witcher.gameObject.transform.position.z - 30);
             camera.gameObject.transform.eulerAngles = new Vector3(20, 0, 0);
 
+            NegotiationUI ui = NegotiationUI.Instance;
+            Debug.Log(ui.ToString());
+            if (ui.gameObject.activeSelf == false)
+            {
+                NegotiationUI.Instance.BeginNegotiation(negotitionReciever);
+            }
+
+            return;
         }
 
 
