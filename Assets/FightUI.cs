@@ -39,6 +39,8 @@ public interface IMonseterFighter
     void recieveDamage(float damage);
     event Action deathEvent;
     float getMonsterHealth();
+
+    
 }
 
 
@@ -46,6 +48,7 @@ public interface IPlayerFighter
 {
     PlayerAttack getNextPlayerAttack();
     void recieveDamage(float damage);
+    float getPlayerHealth();
     event Action deathEvent;
 }
 
@@ -62,9 +65,11 @@ public class FightUI : MonoBehaviour
     private static FightUI instance;
     public static FightUI Instance { get => instance; }
 
+    public Fight fightObjectInstance;
 
     [Header("Refrences")]
     public Text enemyHealthText;
+    public Text playerHealthText;
     public Button attackButton;
     public Text attackButtonLabel;
     public Button defendButton;
@@ -97,8 +102,11 @@ public class FightUI : MonoBehaviour
             defendButton.onClick.AddListener(onDefendButton);
 
         }
+
+        GameObject fightObjectParent = GameObject.FindGameObjectWithTag("FightObject");
+        fightObjectInstance = fightObjectParent.gameObject.transform.GetChild(0).gameObject.GetComponent<Fight>();
+    
         this.gameObject.SetActive(false);
-        
     }
 
 
@@ -130,6 +138,7 @@ public class FightUI : MonoBehaviour
         initPlayerAttack(player.getNextPlayerAttack());
         initMonsterAttack(monster.getNextMonsterAttack());
         enemyHealthText.text = monster.getMonsterHealth().ToString();
+        playerHealthText.text = player.getPlayerHealth().ToString();
     }
 
 
@@ -138,9 +147,11 @@ public class FightUI : MonoBehaviour
 
     public void endFight()
     {
+        
         playerFighter.deathEvent -= onPlayerDeath;
         monsterFighter.deathEvent -= onMonsterDeath;
-        gameObject.SetActive(false);
+        Debug.Log("endFight");
+        StartCoroutine(fightObjectInstance.endFight());
     }
 
 
@@ -207,7 +218,6 @@ public class FightUI : MonoBehaviour
             defendState = DefendState.Partial;
         }
 
-        
     }
 
     private void Update()
@@ -249,7 +259,9 @@ public class FightUI : MonoBehaviour
                     break;
             }
 
+            Debug.Log(monsterAttack.damage * multiplier);
             playerFighter.recieveDamage(monsterAttack.damage* multiplier);
+            playerHealthText.text = playerFighter.getPlayerHealth().ToString();
             initMonsterAttack(monsterFighter.getNextMonsterAttack());
         }
 

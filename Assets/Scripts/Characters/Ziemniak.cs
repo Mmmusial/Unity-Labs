@@ -12,6 +12,21 @@ public class Ziemniak : MonoBehaviour,IMonseterFighter
     public float overallCooldown = 5.0f;
     public int frytyDropCount = 30;
     public event Action deathEvent;
+    public Animator animator;
+
+
+
+    IEnumerator Fade()
+    {
+        for (float ft = 1f; ft >= 0; ft -= 0.1f)
+        {
+            Color c = gameObject.GetComponent<Renderer>().material.color;// renderer.material.color;
+            c.a = ft;
+            gameObject.GetComponent<Renderer>().material.color = c;
+            yield return null;
+        }
+    }
+
 
     public void SaveZiemniak()
     {
@@ -74,10 +89,15 @@ public class Ziemniak : MonoBehaviour,IMonseterFighter
         if (health <= 0)
         {
             StaticValues.Frytki += frytyDropCount;
+            animator.SetBool("deadAnimationPlay", true);
+          
             deathEvent?.Invoke();
+            gameObject.SetActive(false);
             
         }
     }
+
+  
 
     public float getMonsterHealth()
     {

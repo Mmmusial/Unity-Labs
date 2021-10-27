@@ -4,12 +4,24 @@ using UnityEngine;
 
 public class CameraMenager : MonoBehaviour
 {
+    public bool freeRoam;
+    [SerializeField]
+    private float cameraSpeed;
 
-    public float vertical;
-    public float horizontal;
-    public float cameraSpeed;
-    public float zoomSpeed = 50f;
-    // Start is called before the first frame update
+    [SerializeField]
+    private float zoomSensitivity;
+    private float vertical;
+    private float horizontal;
+    private float scrollWheel;
+
+    private void Awake()
+    {
+        cameraSpeed = 30f;
+        zoomSensitivity = 300f;
+        scrollWheel = 0;
+        freeRoam = true;
+    }
+
     void Start()
     {
         
@@ -26,13 +38,36 @@ public class CameraMenager : MonoBehaviour
         //    Vector3 rotateValue = new Vector3(x, y * -1, 0);
         //    transform.eulerAngles = transform.eulerAngles - rotateValue;
         //}
-            vertical = Input.GetAxis("Vertical");
-            horizontal = Input.GetAxis("Horizontal");
-            transform.Translate(new Vector3(horizontal,  0, Input.GetAxis("Mouse ScrollWheel") * zoomSpeed) * cameraSpeed * Time.deltaTime);
-        Quaternion actualRot = transform.rotation;
-        transform.rotation = Quaternion.identity;
-        transform.Translate(new Vector3(0, 0,-vertical) * cameraSpeed * Time.deltaTime);
-        transform.rotation = actualRot;
 
+        if (!freeRoam)
+            return;
+
+        transform.LookAt(transform.parent);
+       
+
+        vertical = Input.GetAxis("Vertical");
+        horizontal = Input.GetAxis("Horizontal");
+        scrollWheel = Input.GetAxis("Mouse ScrollWheel");
+
+        Vector3 newCamPos = new Vector3(
+            transform.parent.position.x - horizontal, 
+            transform.parent.position.y,
+            transform.parent.position.z - vertical
+            );
+
+        transform.position = Vector3.MoveTowards(transform.position, transform.parent.position, scrollWheel * zoomSensitivity * Time.deltaTime);
+
+        transform.parent.position = Vector3.Lerp(transform.parent.position, newCamPos, cameraSpeed * Time.deltaTime);
+        
+
+
+    }
+
+   
+
+    void FixedUpdate()
+    {
+
+        
     }
 }

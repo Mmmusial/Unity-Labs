@@ -48,7 +48,10 @@ public class Witcher : MonoBehaviour,IPlayerFighter
             deathEvent?.Invoke();
         }
     }
-
+    public float getPlayerHealth()
+    {
+        return health;
+    }
 
     public void SaveWitcher()
     {
@@ -126,22 +129,22 @@ public class Witcher : MonoBehaviour,IPlayerFighter
     {
         if (GuardDefenceValue() != 0.0f && ShieldBlockValue() != 0.0f)
         {
-            Debug.Log("DUPSKO1");
+            
             return 0.85f;
         }
         else if (GuardDefenceValue() != 0.0f && ShieldBlockValue() == 0.0f)
         {
-            Debug.Log("DUPSKO2");
+            
             return GuardDefenceValue();
         }
         else if (GuardDefenceValue() == 0.0f && ShieldBlockValue() != 0.0f)
         {
-            Debug.Log("DUPSKO3");
+           
             return ShieldBlockValue();
         }
         else
         {
-            Debug.Log("DUPSKO4");
+            
             return 0.0f;
         }
     }

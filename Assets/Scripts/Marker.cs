@@ -25,7 +25,7 @@ public class Marker : MonoBehaviour
     public Camera raycastCmera;
     [Header("Variables")]
     List<RaycastHit> corners;
-
+    public bool activeFlag;
     //In object scope for debug purposes
     Vector3 minVec;
     Vector3 maxVec;
@@ -40,6 +40,8 @@ public class Marker : MonoBehaviour
         image.enabled = false;
 
         if (raycastCmera == null) raycastCmera = Camera.main;
+
+        activeFlag = true;
     }
 
     // Start is called before the first frame update
@@ -56,6 +58,7 @@ public class Marker : MonoBehaviour
     void sendRaycast()
     {
 
+        Debug.Log("asdasdasdasdasd");
         //Take 4 Corners from selct box
         corners = new List<RaycastHit>();
 
@@ -91,11 +94,6 @@ public class Marker : MonoBehaviour
         if (Physics.Raycast(ray, out hit, float.MaxValue, groundMask.value))
         {
             corners.Add(hit);
-        }
-
-        if (corners.Count <= 0)
-        {
-            return;
         }
 
         //Build overlap box based on select box coordinates
@@ -147,7 +145,10 @@ public class Marker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(!activeFlag)
+        {
+            return;
+        }
 
         if (Input.GetMouseButtonDown(0))
         {

@@ -37,9 +37,14 @@ public class Mover : MonoBehaviour
         {
             animator.SetBool("isRunning", true);
             transform.position = Vector3.MoveTowards(transform.position, route[routeCounter], speed*Time.deltaTime);
-           
-               
-            
+
+            Vector3 relativePos = route[routeCounter] - transform.position ;
+
+            // the second argument, upwards, defaults to Vector3.up
+            Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+            transform.rotation = rotation;
+
+
         }
         else
         {
