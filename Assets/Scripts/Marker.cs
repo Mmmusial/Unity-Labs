@@ -95,6 +95,7 @@ public class Marker : MonoBehaviour
         {
             corners.Add(hit);
         }
+        if (corners.Count <= 0) return;
 
         //Build overlap box based on select box coordinates
         
