@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 
 
-
+[Serializable]
 public struct MonsterAttack{
     public float targetCoverage;// beetwen 0 and 1
     public float attackDelay; // in second

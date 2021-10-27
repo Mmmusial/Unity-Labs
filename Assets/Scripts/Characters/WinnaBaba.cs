@@ -1,13 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class WinnaBaba : MonoBehaviour
+public class WinnaBaba : MonoBehaviour ,IMonseterFighter
 {
     public int attack = 20;
     public int health = 60;
     public int armor = 30;
     public float overallCooldown = 5.0f;
+
+
+    public event Action deathEvent;
+
+    public MonsterAttack[] attacks;
+    private int attackConter;
+    public MonsterAttack getNextMonsterAttack()
+    {
+        return attacks[attackConter++ % attacks.Length];
+    }
+
+    public void recieveDamage(float damage)
+    {
+        health -= (int)damage;
+        StaticValues.WinoCzerwone += 10;
+        StaticValues.WInoBiale += 10;
+        StaticValues.HajsZloty += 2;
+        StaticValues.HajsSrebrny += 1;
+        if (health <= 0)
+        {
+            deathEvent?.Invoke();
+            
+        }
+    }
+
+    public float getMonsterHealth()
+    {
+        return health;
+    }
 
     public void SaveWinnaBaba()
     {

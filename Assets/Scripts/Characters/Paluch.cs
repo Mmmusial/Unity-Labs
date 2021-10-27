@@ -1,13 +1,41 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Paluch : MonoBehaviour
+public class Paluch : MonoBehaviour, IMonseterFighter
 {
     public int attack = 30;
     public int health = 50;
     public int armor = 50;
     public float overallCooldown = 6.0f;
+
+    public event Action deathEvent;
+
+    public MonsterAttack[] attacks;
+    private int attackConter;
+    public MonsterAttack getNextMonsterAttack()
+    {
+        return attacks[attackConter++ % attacks.Length];
+    }
+
+    public void recieveDamage(float damage)
+    {
+        health -= (int)damage;
+        StaticValues.Lapuszki += 10;
+        StaticValues.HajsZloty += 2;
+        StaticValues.HajsSrebrny += 1;
+        if (health <= 0)
+        {
+            deathEvent?.Invoke();
+        }
+    }
+
+    public float getMonsterHealth()
+    {
+        return health;
+    }
+
 
     public void SavePaluch()
     {
@@ -42,6 +70,8 @@ public class Paluch : MonoBehaviour
     {
         return (int)(this.attack * 0.9);
     }
+
+
     #endregion
 
 }

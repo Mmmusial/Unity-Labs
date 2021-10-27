@@ -2974,7 +2974,7 @@ Transform:
   m_GameObject: {fileID: 2807833377295615667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children:
   - {fileID: 2808584885134183851}
   - {fileID: 2808745778071443815}
@@ -3038,6 +3038,15 @@ MonoBehaviour:
   health: 60
   armor: 30
   overallCooldown: 5
+  attacks:
+  - targetCoverage: 0.5
+    attackDelay: 2
+    attackffset: 0.1
+    damage: 60
+  - targetCoverage: 0.7
+    attackDelay: 1.5
+    attackffset: 0.3
+    damage: 40
 --- !u!1 &2807834717238290603
 GameObject:
   m_ObjectHideFlags: 0
