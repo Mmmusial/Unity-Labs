@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 95471671811264702}
   - component: {fileID: 652081959949258817}
   - component: {fileID: 652870876785975277}
+  - component: {fileID: 6358971996203779754}
   m_Layer: 8
   m_Name: Ziemniak
   m_TagString: Monster
@@ -111,8 +112,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a09e1332879594e9264fa2329c652c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attack: 15
   health: 50
   armor: 100
+  overallCooldown: 5
+  frytyDropCount: 30
+  animator: {fileID: 0}
+--- !u!114 &6358971996203779754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090219386143568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae36c23826a990e4392438cc430855ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystem: {fileID: 1203957795218045057, guid: 24474c53e9a31184da94dc5e1a9c6135,
+    type: 3}
 --- !u!1 &1159745215084782
 GameObject:
   m_ObjectHideFlags: 0
